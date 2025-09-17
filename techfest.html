@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechFest 2023 - Campus Ambassador Program</title>
+    <title>TechFest 2025 - Campus Ambassador Program</title>
     <style>
         /* CSS Variables for consistent theming */
         :root {
@@ -31,8 +31,8 @@
         body {
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
             line-height: 1.6;
-            color: var(--dark);
-            background-color: #f9fafb;
+            color: white;
+            background-color: #000000;
         }
 
         img {
@@ -58,7 +58,7 @@
         h1, h2, h3, h4 {
             margin-bottom: 1rem;
             line-height: 1.2;
-            color: var(--dark);
+            color: white;
         }
 
         h1 {
@@ -67,7 +67,7 @@
 
         h2 {
             font-size: 2rem;
-            color: var(--primary);
+            color: white;
         }
 
         p {
@@ -76,13 +76,15 @@
 
         /* Header & Navigation */
         header {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            background: transparent;
             color: white;
-            padding: 1rem 0;
-            position: sticky;
+            padding: 2rem 0;
+            position: absolute;
             top: 0;
-            z-index: 100;
-            box-shadow: var(--shadow);
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: var(--transition);
         }
 
         .header-container {
@@ -92,21 +94,15 @@
         }
 
         .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
             display: flex;
             align-items: center;
+            color: white;
         }
 
-        .logo-icon {
-            margin-right: 0.5rem;
-            width: 32px;
-            height: 32px;
-            background: var(--accent);
-            border-radius: 50%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
+        .logo img {
+            height: 60px;
+            width: auto;
+            margin-right: 1rem;
         }
 
         .nav-toggle {
@@ -132,96 +128,174 @@
         }
 
         nav li {
-            margin-left: 1.5rem;
+            margin-left: 2rem;
         }
 
         nav a {
             color: white;
             font-weight: 500;
-            padding: 0.5rem;
-            border-radius: 4px;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
             display: block;
+            transition: var(--transition);
+            font-size: 1rem;
         }
 
         nav a:hover, nav a:focus {
             background-color: rgba(255, 255, 255, 0.1);
+            color: white;
             outline: 2px solid white;
         }
 
         /* Hero Section */
         .hero {
-            padding: 4rem 0;
-            background: linear-gradient(rgba(37, 99, 235, 0.9), rgba(147, 51, 234, 0.9)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%232563eb"/><path d="M0 0L100 100" stroke="%231d4ed8" stroke-width="2"/><path d="M100 0L0 100" stroke="%231d4ed8" stroke-width="2"/></svg>');
+            min-height: 100vh;
+            background: black;
             color: white;
-            text-align: center;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            padding-top: 0;
+        }
+
+        .hero-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
         }
 
         .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
+            z-index: 2;
+            position: relative;
         }
 
-        .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            color: white;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
+        .techfest-branding {
             margin-bottom: 2rem;
         }
 
-        .btn {
-            display: inline-block;
-            background-color: var(--accent);
+        .techfest-branding img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
             color: white;
-            padding: 0.8rem 1.5rem;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+            line-height: 1.6;
+            max-width: 500px;
+            color: #cccccc;
+        }
+
+        .hero-globe {
+            position: relative;
+            height: 600px;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-globe iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--primary);
+            color: white;
+            padding: 1rem 2rem;
             border-radius: 50px;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1px;
             transition: var(--transition);
-            border: 2px solid var(--accent);
+            border: 2px solid var(--primary);
             cursor: pointer;
             font-size: 1rem;
         }
 
         .btn:hover, .btn:focus {
-            background-color: transparent;
-            color: var(--accent);
-            outline: 2px solid var(--accent);
+            background: var(--primary-dark);
+            border-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .btn-primary:hover {
+            background: #e68900;
+            border-color: #e68900;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
         }
 
         /* Sections */
         section {
-            padding: 4rem 0;
+            padding: 6rem 0;
+            background: black;
+            color: white;
         }
 
         .section-title {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
         }
 
         /* About Section */
         .about-content {
             display: flex;
             flex-wrap: wrap;
-            gap: 2rem;
+            gap: 4rem;
             align-items: center;
         }
 
         .about-text {
             flex: 1 1 60%;
+            font-size: 1.1rem;
+            line-height: 1.8;
         }
 
         .about-image {
             flex: 1 1 35%;
             border-radius: var(--radius);
             overflow: hidden;
-            box-shadow: var(--shadow);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
             background: var(--light);
-            min-height: 250px;
+            min-height: 350px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -237,123 +311,196 @@
         }
 
         .feature-card {
-            background: white;
+            background: #1a1a1a;
             padding: 2rem;
             border-radius: var(--radius);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 6px rgba(255, 255, 255, 0.05);
             transition: var(--transition);
             text-align: center;
+            color: white;
+            border: 1px solid #333;
         }
 
         .feature-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 15px -3px rgba(255, 255, 255, 0.1);
+            background: #2a2a2a;
         }
 
         .feature-icon {
             font-size: 2.5rem;
-            color: var(--primary);
+            color: var(--accent);
             margin-bottom: 1rem;
             width: 60px;
             height: 60px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: var(--light);
+            background: rgba(245, 158, 11, 0.2);
             border-radius: 50%;
             margin: 0 auto 1rem;
+        }
+
+        /* Interactive 3D Section */
+        .interactive-3d-section {
+            padding: 0;
+            background: black;
+        }
+
+        .spline-container {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+        }
+
+        .spline-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
         }
 
         /* Contact Form */
         .contact-container {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .contact-info {
-            background: var(--primary);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             color: white;
-            padding: 2rem;
-            border-radius: var(--radius);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(37, 99, 235, 0.3);
+            height: fit-content;
         }
 
         .contact-info h3 {
             color: white;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
         }
 
         .info-item {
             display: flex;
             align-items: center;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
         }
 
         .info-icon {
-            width: 24px;
-            height: 24px;
-            margin-right: 1rem;
+            width: 40px;
+            height: 40px;
+            margin-right: 1.5rem;
             background: var(--accent);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
+            font-size: 1.2rem;
+        }
+
+        .contact-form {
+            background: #1a1a1a;
+            padding: 3rem;
+            border-radius: 20px;
+            border: 1px solid #333;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
         }
 
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
         }
 
         label {
             display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+            color: white;
+            font-size: 1.1rem;
         }
 
         input, textarea, select {
             width: 100%;
-            padding: 0.8rem;
-            border: 2px solid var(--gray);
-            border-radius: 4px;
+            padding: 1.2rem;
+            border: 2px solid #333;
+            border-radius: 12px;
             font-family: inherit;
             font-size: 1rem;
             transition: var(--transition);
-            background: white;
+            background: #2a2a2a;
+            color: white;
         }
 
         input:focus, textarea:focus, select:focus {
-            outline: 2px solid var(--primary);
-            border-color: var(--primary);
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2);
+            background: #333;
+        }
+
+        input::placeholder, textarea::placeholder {
+            color: #888;
         }
 
         .error {
             color: var(--error);
-            font-size: 0.875rem;
-            margin-top: 0.25rem;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
             display: none;
+            padding-left: 0.5rem;
         }
 
         input.error-field, textarea.error-field, select.error-field {
             border-color: var(--error);
+            background: rgba(239, 68, 68, 0.1);
         }
 
         .success-message {
-            background-color: var(--success);
+            background: linear-gradient(135deg, var(--success), #059669);
             color: white;
-            padding: 1rem;
-            border-radius: 4px;
-            margin-top: 1rem;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-top: 2rem;
             display: none;
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
         }
 
         .error-message {
-            background-color: var(--error);
+            background: linear-gradient(135deg, var(--error), #dc2626);
             color: white;
-            padding: 1rem;
-            border-radius: 4px;
-            margin-top: 1rem;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-top: 2rem;
             display: none;
+            box-shadow: 0 10px 25px rgba(239, 68, 68, 0.3);
+        }
+
+        .form-submit-btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--accent), #e68900);
+            color: white;
+            padding: 1.5rem;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 2rem;
+        }
+
+        .form-submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(245, 158, 11, 0.4);
         }
 
         /* Footer */
@@ -403,13 +550,13 @@
             }
         }
 
-        @media (min-width: 768px) {
-            .hero h1 {
-                font-size: 3.5rem;
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .hero-container {
+                gap: 2rem;
             }
             
-            .contact-container {
-                grid-template-columns: 1fr 2fr;
+            .hero-content h1 {
+                font-size: 3rem;
             }
         }
 
@@ -428,15 +575,17 @@
             
             nav ul {
                 position: fixed;
-                top: 70px;
+                top: 120px;
                 left: 0;
                 right: 0;
                 flex-direction: column;
-                background-color: var(--primary);
+                background-color: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(10px);
                 padding: 1rem;
                 clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
                 transition: var(--transition);
                 z-index: 99;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             }
             
             nav ul.active {
@@ -447,8 +596,40 @@
                 margin: 0.5rem 0;
             }
             
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+                padding-top: 2rem;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-globe {
+                height: 400px;
+            }
+            
+            .techfest-branding img {
+                max-width: 80%;
+            }
+            
             .about-content {
                 flex-direction: column;
+            }
+
+            .spline-container {
+                height: 60vh;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .contact-info, .contact-form {
+                padding: 2rem;
             }
         }
 
@@ -458,301 +639,41 @@
             outline-offset: 2px;
         }
 
-        /* Skip link for keyboard users */
-        .skip-link {
-            position: absolute;
-            top: -40px;
-            left: 0;
-            background: var(--accent);
-            color: white;
-            padding: 8px;
-            z-index: 1000;
-            transition: top 0.3s;
-        }
+        
 
-        .skip-link:focus {
-            top: 0;
-        }
-
-        /* High contrast mode support */
-        @media (prefers-contrast: high) {
-            :root {
-                --primary: #0047ab;
-                --secondary: #6a0dad;
-                --accent: #ff8c00;
-                --light: #ffffff;
-                --dark: #000000;
-            }
-            
-            .feature-card {
-                border: 2px solid var(--dark);
-            }
-        }
-
-        /* Reduced motion support */
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-            
-            .feature-card:hover {
-                transform: none;
-            }
-        }
-
-        /* New Elements Inspired by TechFest.org */
-        .stats-container {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-            margin: 3rem 0;
-        }
-
-        .stat-card {
-            background: white;
-            padding: 1.5rem;
-            border-radius: var(--radius);
-            text-align: center;
-            box-shadow: var(--shadow);
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: var(--primary);
-            display: block;
-            line-height: 1;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            color: var(--gray);
-        }
-
-        .timeline {
-            position: relative;
-            max-width: 800px;
-            margin: 3rem auto;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 4px;
-            height: 100%;
-            background: var(--primary);
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 2rem;
-            width: 50%;
-            padding: 0 2rem;
-        }
-
-        .timeline-item:nth-child(odd) {
-            left: 0;
-            padding-right: 3rem;
-        }
-
-        .timeline-item:nth-child(even) {
-            left: 50%;
-            padding-left: 3rem;
-        }
-
-        .timeline-content {
-            background: white;
-            padding: 1.5rem;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            position: relative;
-        }
-
-        .timeline-content::after {
-            content: '';
-            position: absolute;
-            top: 1.5rem;
-            width: 20px;
-            height: 20px;
-            background: var(--primary);
-            border-radius: 50%;
-        }
-
-        .timeline-item:nth-child(odd) .timeline-content::after {
-            right: -10px;
-            transform: translateX(50%);
-        }
-
-        .timeline-item:nth-child(even) .timeline-content::after {
-            left: -10px;
-            transform: translateX(-50%);
-        }
-
-        @media (max-width: 768px) {
-            .timeline::before {
-                left: 20px;
-            }
-            
-            .timeline-item {
-                width: 100%;
-                padding-left: 50px;
-                padding-right: 0;
-            }
-            
-            .timeline-item:nth-child(even) {
-                left: 0;
-            }
-            
-            .timeline-content::after {
-                left: -10px !important;
-                transform: translateX(-50%) !important;
-            }
-            
-            .stats-container {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .testimonials {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-
-        .testimonial {
-            background: white;
-            padding: 2rem;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            position: relative;
-        }
-
-        .testimonial::before {
-            content: '"';
-            font-size: 4rem;
-            color: var(--light);
-            position: absolute;
-            top: 0.5rem;
-            left: 1rem;
-            line-height: 1;
-        }
-
-        .testimonial-text {
-            position: relative;
-            z-index: 1;
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            margin-top: 1.5rem;
-        }
-
-        .author-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--light);
-            margin-right: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: var(--primary);
-        }
-
-        @media (min-width: 768px) {
-            .testimonials {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        .faq-container {
-            max-width: 800px;
-            margin: 3rem auto;
-        }
-
-        .faq-item {
-            margin-bottom: 1rem;
-            border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: var(--shadow);
-        }
-
-        .faq-question {
-            background: white;
-            padding: 1.5rem;
-            font-weight: 600;
-            cursor: pointer;
-            position: relative;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .faq-question::after {
-            content: '+';
-            font-size: 1.5rem;
-        }
-
-        .faq-answer {
-            padding: 0 1.5rem;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-            background: white;
-        }
-
-        .faq-item.active .faq-question::after {
-            content: '-';
-        }
-
-        .faq-item.active .faq-answer {
-            padding: 1.5rem;
-            max-height: 500px;
-        }
+        
     </style>
 </head>
 <body>
-    <!-- Skip link for keyboard users -->
-    <a href="#main-content" class="skip-link">Skip to main content</a>
-
     <!-- Header -->
     <header>
         <div class="container header-container">
             <div class="logo">
-                <span class="logo-icon" aria-hidden="true">T</span>
-                <span>TechFest 2023</span>
+                <img src="assets/logo.png" alt="TechFest Logo">
             </div>
             <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
                 <span aria-hidden="true">☰</span>
             </button>
-            <nav>
-                <ul>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#features">Features</a></li>
-                    <li><a href="#stats">Stats</a></li>
-                    <li><a href="#timeline">Timeline</a></li>
-                    <li><a href="#testimonials">Testimonials</a></li>
-                    <li><a href="#faq">FAQ</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
         </div>
     </header>
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="container hero-content">
-            <h1>Join the Tech Revolution</h1>
-            <p>TechFest 2023 brings together the brightest minds in technology for a week of innovation, networking, and inspiration. Be part of the future!</p>
-            <a href="#contact" class="btn">Register Now</a>
+        <div class="hero-container">
+            <div class="hero-content"><br><br><br><br><br>
+                <div class="techfest-branding">
+                    <img src="assets/techfestdate.png" alt="TechFest 2025 - Asia's Largest Science & Technology Festival">
+                </div>
+                <h1>Supporting Founders,<br>Building The Next<br>Revolutionary Science And<br>Technology.</h1>
+                <p class="hero-subtitle">TechFest 2025 brings together the brightest minds in technology for a week of innovation, networking, and inspiration. Be part of the future!</p>
+                <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+                    <a href="#contact" class="btn btn-primary">Get in Touch →</a>
+                    <a href="#about" class="btn btn-outline">Learn More</a>
+                </div>
+            </div>
+            <div class="hero-globe">
+                <iframe src='https://my.spline.design/worldplanet-D8xAZbkvNwhF4dCkXOZaxIiM/' frameborder='0' width='100%' height='100%'></iframe>
+            </div>
         </div>
     </section>
 
@@ -768,177 +689,13 @@
                         <p>This year's theme is "Sustainable Technology for a Better Tomorrow", focusing on how technology can help solve some of the world's most pressing environmental and social challenges.</p>
                         <p>As a campus ambassador, you'll play a crucial role in spreading awareness about the event, organizing pre-events on your campus, and representing your institution at the national level.</p>
                     </div>
-                    <div class="about-image" aria-hidden="true">
-                        <span>TechFest Image</span>
-                    </div>
                 </div>
             </div>
         </section>
-
-        <!-- Features Section -->
-        <section id="features" style="background-color: var(--light);">
-            <div class="container">
-                <h2 class="section-title">Why Become a Campus Ambassador?</h2>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon" aria-hidden="true">📱</div>
-                        <h3>Networking Opportunities</h3>
-                        <p>Connect with industry leaders, innovators, and like-minded students from across the country.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon" aria-hidden="true">🚀</div>
-                        <h3>Leadership Experience</h3>
-                        <p>Develop valuable leadership and organizational skills by representing your campus.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon" aria-hidden="true">📜</div>
-                        <h3>Certification</h3>
-                        <p>Receive an official certificate of recognition and a letter of recommendation.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon" aria-hidden="true">🎁</div>
-                        <h3>Exclusive Access</h3>
-                        <p>Get early access to event information, workshops, and speaker sessions.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon" aria-hidden="true">🎓</div>
-                        <h3>Merchandise & Swag</h3>
-                        <p>Receive exclusive TechFest merchandise and promotional materials.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon" aria-hidden="true">🏆</div>
-                        <h3>Recognition</h3>
-                        <p>Outstanding ambassadors will be featured on our website and social media channels.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Stats Section -->
-        <section id="stats">
-            <div class="container">
-                <h2 class="section-title">TechFest by the Numbers</h2>
-                <div class="stats-container">
-                    <div class="stat-card">
-                        <span class="stat-number">5000+</span>
-                        <span class="stat-label">Participants</span>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-number">150+</span>
-                        <span class="stat-label">Colleges</span>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-number">50+</span>
-                        <span class="stat-label">Events</span>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-number">100+</span>
-                        <span class="stat-label">Speakers</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Timeline Section -->
-        <section id="timeline" style="background-color: var(--light);">
-            <div class="container">
-                <h2 class="section-title">Event Timeline</h2>
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-content">
-                            <h3>Registration Opens</h3>
-                            <p>September 1, 2023</p>
-                            <p>Sign up to become a campus ambassador and get access to exclusive resources.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-content">
-                            <h3>Orientation Webinar</h3>
-                            <p>September 15, 2023</p>
-                            <p>Join our online orientation to learn about your role and responsibilities.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-content">
-                            <h3>Campus Promotion</h3>
-                            <p>October 1-31, 2023</p>
-                            <p>Spread the word about TechFest on your campus and organize pre-events.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-content">
-                            <h3>TechFest Main Event</h3>
-                            <p>November 15-17, 2023</p>
-                            <p>The main event featuring workshops, competitions, and networking sessions.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Testimonials Section -->
-        <section id="testimonials">
-            <div class="container">
-                <h2 class="section-title">What Our Ambassadors Say</h2>
-                <div class="testimonials">
-                    <div class="testimonial">
-                        <div class="testimonial-text">
-                            <p>Being a TechFest campus ambassador was a transformative experience. I developed leadership skills and built connections that helped me secure an internship at a top tech company.</p>
-                        </div>
-                        <div class="testimonial-author">
-                            <div class="author-avatar">P</div>
-                            <div>
-                                <h4>Priya Sharma</h4>
-                                <p>IIT Bombay, 2022</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial">
-                        <div class="testimonial-text">
-                            <p>The ambassador program gave me the platform to showcase my organizational skills and connect with like-minded individuals from across the country. It was an incredible journey!</p>
-                        </div>
-                        <div class="testimonial-author">
-                            <div class="author-avatar">A</div>
-                            <div>
-                                <h4>Arjun Mehta</h4>
-                                <p>NIT Karnataka, 2022</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- FAQ Section -->
-        <section id="faq" style="background-color: var(--light);">
-            <div class="container">
-                <h2 class="section-title">Frequently Asked Questions</h2>
-                <div class="faq-container">
-                    <div class="faq-item">
-                        <div class="faq-question">What are the responsibilities of a campus ambassador?</div>
-                        <div class="faq-answer">
-                            <p>As a campus ambassador, you'll be responsible for promoting TechFest on your campus, organizing pre-events, coordinating with student groups, and acting as the main point of contact between your institution and the TechFest team.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <div class="faq-question">How much time do I need to commit?</div>
-                        <div class="faq-answer">
-                            <p>The time commitment is flexible, typically around 5-10 hours per week during the promotion period. Most tasks can be scheduled around your academic commitments.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <div class="faq-question">What are the benefits of being an ambassador?</div>
-                        <div class="faq-answer">
-                            <p>Benefits include certificates of recognition, letters of recommendation, exclusive merchandise, networking opportunities with industry professionals, and potential internship opportunities.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <div class="faq-question">Can students from any college apply?</div>
-                        <div class="faq-answer">
-                            <p>Yes, we welcome applications from students of all accredited colleges and universities. We value diversity and are looking for passionate individuals regardless of their institution.</p>
-                        </div>
-                    </div>
-                </div>
+        <!-- Interactive 3D Section -->
+        <section class="interactive-3d-section">
+            <div class="spline-container">
+                <iframe src='https://my.spline.design/projectpromolookatmouse-y5R8W1d6xknOgD3HGJI3l80N/' frameborder='0' width='100%' height='100%'></iframe>
             </div>
         </section>
 
@@ -946,6 +703,7 @@
         <section id="contact">
             <div class="container">
                 <h2 class="section-title">Apply as Campus Ambassador</h2>
+                <p style="text-align: center; font-size: 1.2rem; color: #cccccc; margin-bottom: 4rem; max-width: 600px; margin-left: auto; margin-right: auto;">Join our exclusive network of student leaders and help shape the future of technology on your campus.</p>
                 <div class="contact-container">
                     <div class="contact-info">
                         <h3>Get In Touch</h3>
@@ -1001,7 +759,7 @@
                             <textarea id="motivation" name="motivation" rows="4" required aria-required="true"></textarea>
                             <div class="error" id="motivation-error">Please tell us why you want to be an ambassador</div>
                         </div>
-                        <button type="submit" class="btn">Submit Application</button>
+                        <button type="submit" class="form-submit-btn">Submit Application</button>
                         <div class="success-message" id="success-message">
                             Thank you for your application! We'll get back to you soon.
                         </div>
@@ -1018,17 +776,16 @@
     <footer>
         <div class="container">
             <div class="logo">
-                <span class="logo-icon" aria-hidden="true">T</span>
-                <span>TechFest 2023</span>
+                <span>TechFest 2025</span>
             </div>
-            <p>Connecting the brightest minds in technology</p>
+            <p>Supporting Founders, Building The Next Revolutionary Science And Technology.</p>
             <div class="social-links">
-                <a href="#" class="social-link" aria-label="Facebook">f</a>
-                <a href="#" class="social-link" aria-label="Twitter">t</a>
-                <a href="#" class="social-link" aria-label="Instagram">i</a>
-                <a href="#" class="social-link" aria-label="LinkedIn">in</a>
+                <a href="https://www.facebook.com/iitbombaytechfest/" class="social-link" aria-label="Facebook">📘</a>
+                <a href="https://x.com/Techfest_IITB" class="social-link" aria-label="Twitter">🐦</a>
+                <a href="https://www.instagram.com/techfest_iitbombay/" class="social-link" aria-label="Instagram">📷</a>
+                <a href="https://www.linkedin.com/company/techfest/posts/?feedView=all" class="social-link" aria-label="LinkedIn">💼</a>
             </div>
-            <p>&copy; 2023 TechFest. All rights reserved.</p>
+            <p>&copy; 2025 TechFest. All rights reserved.</p>
         </div>
     </footer>
 
